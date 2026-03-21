@@ -5,7 +5,7 @@ import sys
 import re
 from typing import Optional
 
-__version__ = "0.1.0"
+__version__ = "0.1.1"
 FORMAT_VERSION = "tir/0.1"
 
 # ------------------------------------------------------------
