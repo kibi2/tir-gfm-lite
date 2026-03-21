@@ -1,0 +1,13 @@
+unknown sub command: help
+tir-gfm-lite 0.1.0
+
+usage:
+  tir-gfm-lite parse    [file|-]
+  tir-gfm-lite unparse  [file|-]
+  tir-gfm-lite --version
+
+Options:
+
+If file is omitted or '-', parse reads from stdin.
+If file is omitted or '-', unparse writes to stdout.
+

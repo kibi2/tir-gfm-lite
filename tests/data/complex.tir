@@ -1,0 +1,132 @@
+{"kind": "attr_file", "version": "tir/0.1"}
+{"kind": "attr_plain"}
+{"kind": "plain", "line": "# Project Overview"}
+{"kind": "plain", "line": ""}
+{"kind": "plain", "line": "This document contains multiple tables embedded in normal text."}
+{"kind": "plain", "line": "It is intended to test GFM table parsing."}
+{"kind": "plain", "line": ""}
+{"kind": "plain", "line": "---"}
+{"kind": "plain", "line": ""}
+{"kind": "plain", "line": "## 1. Simple table"}
+{"kind": "plain", "line": ""}
+{"kind": "attr_grid", "columns": [{"align": "left"}, {"align": "left"}, {"align": "left"}]}
+{"kind": "grid", "row": ["Name", "Age", "City"]}
+{"kind": "grid", "row": ["Alice", "23", "Tokyo"]}
+{"kind": "grid", "row": ["Bob", "31", "Osaka"]}
+{"kind": "grid", "row": ["Carol", "27", "Nagoya"]}
+{"kind": "attr_plain"}
+{"kind": "plain", "line": ""}
+{"kind": "plain", "line": "Some text between tables."}
+{"kind": "plain", "line": "This should *not* be part of any table."}
+{"kind": "plain", "line": ""}
+{"kind": "plain", "line": "---"}
+{"kind": "plain", "line": ""}
+{"kind": "plain", "line": "## 2. Alignment test"}
+{"kind": "plain", "line": ""}
+{"kind": "attr_grid", "columns": [{"align": "left"}, {"align": "center"}, {"align": "right"}]}
+{"kind": "grid", "row": ["Left", "Center", "Right"]}
+{"kind": "grid", "row": ["a", "b", "c"]}
+{"kind": "grid", "row": ["10", "20", "30"]}
+{"kind": "grid", "row": ["foo", "bar", "baz"]}
+{"kind": "attr_plain"}
+{"kind": "plain", "line": ""}
+{"kind": "plain", "line": "---"}
+{"kind": "plain", "line": ""}
+{"kind": "plain", "line": "## 3. Table with inline formatting"}
+{"kind": "plain", "line": ""}
+{"kind": "attr_grid", "columns": [{"align": "left"}, {"align": "left"}, {"align": "left"}]}
+{"kind": "grid", "row": ["Key", "Description", "Example"]}
+{"kind": "grid", "row": ["`id`", "**Primary key**", "`user_001`"]}
+{"kind": "grid", "row": ["name", "_Display name_", "**Alice**"]}
+{"kind": "grid", "row": ["note", "Free text", "`a | b | c`"]}
+{"kind": "attr_plain"}
+{"kind": "plain", "line": ""}
+{"kind": "plain", "line": "Note: escaped pipes should be preserved."}
+{"kind": "plain", "line": ""}
+{"kind": "plain", "line": "---"}
+{"kind": "plain", "line": ""}
+{"kind": "plain", "line": "## 4. Different column count (block separation test)"}
+{"kind": "plain", "line": ""}
+{"kind": "attr_grid", "columns": [{"align": "left"}, {"align": "left"}]}
+{"kind": "grid", "row": ["A", "B"]}
+{"kind": "grid", "row": ["1", "2"]}
+{"kind": "grid", "row": ["3", "4"]}
+{"kind": "attr_plain"}
+{"kind": "plain", "line": ""}
+{"kind": "plain", "line": "Text in between."}
+{"kind": "plain", "line": ""}
+{"kind": "attr_grid", "columns": [{"align": "left"}, {"align": "left"}, {"align": "left"}, {"align": "left"}]}
+{"kind": "grid", "row": ["A", "B", "C", "D"]}
+{"kind": "grid", "row": ["1", "2", "3", "4"]}
+{"kind": "grid", "row": ["5", "6", "7", "8"]}
+{"kind": "attr_plain"}
+{"kind": "plain", "line": ""}
+{"kind": "plain", "line": "---"}
+{"kind": "plain", "line": ""}
+{"kind": "plain", "line": "## 5. Table without leading/trailing empty lines"}
+{"kind": "attr_grid", "columns": [{"align": "left"}, {"align": "left"}]}
+{"kind": "grid", "row": ["X", "Y"]}
+{"kind": "grid", "row": ["x1", "y1"]}
+{"kind": "grid", "row": ["x2", "y2"]}
+{"kind": "attr_plain"}
+{"kind": "plain", "line": "Text immediately after table."}
+{"kind": "plain", "line": ""}
+{"kind": "plain", "line": "---"}
+{"kind": "plain", "line": ""}
+{"kind": "plain", "line": "## 6. Table inside a section with lists"}
+{"kind": "plain", "line": ""}
+{"kind": "plain", "line": "- item 1"}
+{"kind": "plain", "line": "- item 2"}
+{"kind": "plain", "line": ""}
+{"kind": "attr_grid", "columns": [{"align": "left"}, {"align": "left"}, {"align": "left"}]}
+{"kind": "grid", "row": ["Feature", "Status", "Comment"]}
+{"kind": "grid", "row": ["parser", "OK", "fast"]}
+{"kind": "grid", "row": ["writer", "WIP", "needs tests"]}
+{"kind": "grid", "row": ["diff", "TODO", "later"]}
+{"kind": "attr_plain"}
+{"kind": "plain", "line": ""}
+{"kind": "plain", "line": "- item 3"}
+{"kind": "plain", "line": "- item 4"}
+{"kind": "plain", "line": ""}
+{"kind": "plain", "line": "---"}
+{"kind": "plain", "line": ""}
+{"kind": "plain", "line": "## 7. Mixed content, many small tables"}
+{"kind": "plain", "line": ""}
+{"kind": "plain", "line": "### Metrics"}
+{"kind": "plain", "line": ""}
+{"kind": "attr_grid", "columns": [{"align": "left"}, {"align": "left"}]}
+{"kind": "grid", "row": ["Metric", "Value"]}
+{"kind": "grid", "row": ["rows", "120"]}
+{"kind": "grid", "row": ["cols", "8"]}
+{"kind": "attr_plain"}
+{"kind": "plain", "line": ""}
+{"kind": "plain", "line": "### Limits"}
+{"kind": "plain", "line": ""}
+{"kind": "attr_grid", "columns": [{"align": "left"}, {"align": "left"}]}
+{"kind": "grid", "row": ["Name", "Max"]}
+{"kind": "grid", "row": ["rows", "1000"]}
+{"kind": "grid", "row": ["cols", "64"]}
+{"kind": "attr_plain"}
+{"kind": "plain", "line": ""}
+{"kind": "plain", "line": "### Flags"}
+{"kind": "plain", "line": ""}
+{"kind": "attr_grid", "columns": [{"align": "left"}, {"align": "left"}]}
+{"kind": "grid", "row": ["Flag", "Meaning"]}
+{"kind": "grid", "row": ["`-v`", "verbose"]}
+{"kind": "grid", "row": ["`-q`", "quiet"]}
+{"kind": "attr_plain"}
+{"kind": "plain", "line": ""}
+{"kind": "plain", "line": "---"}
+{"kind": "plain", "line": ""}
+{"kind": "plain", "line": "## 8. Edge-ish cases"}
+{"kind": "plain", "line": ""}
+{"kind": "attr_grid", "columns": [{"align": "left"}, {"align": "left"}]}
+{"kind": "grid", "row": ["Col1", "Col2"]}
+{"kind": "grid", "row": ["trailing space", "value"]}
+{"kind": "grid", "row": ["empty", ""]}
+{"kind": "attr_plain"}
+{"kind": "plain", "line": ""}
+{"kind": "plain", "line": "---"}
+{"kind": "plain", "line": ""}
+{"kind": "plain", "line": "End of document."}
+{"kind": "plain", "line": ""}
