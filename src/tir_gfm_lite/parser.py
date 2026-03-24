@@ -21,14 +21,14 @@ def read_lines(path):
 
 
 def split_row(line: str) -> list[str]:
-    # 1. \| を退避
+    # 1. Temporarily escape \|
     placeholder = "\x00"
     line = line.replace(r"\|", placeholder)
 
-    # 2. strip（左右の空白）
+    # 2. strip (leading/trailing whitespace)
     line = line.strip()
 
-    # 3. 先頭/末尾の pipe を除去
+    # 3. Remove leading/trailing pipes
     if line.startswith("|"):
         line = line[1:]
     if line.endswith("|"):
@@ -37,7 +37,7 @@ def split_row(line: str) -> list[str]:
     # 4. split
     parts = line.split("|")
 
-    # 5. trim + 復元
+    # 5. trim + restore
     result = [p.strip().replace(placeholder, "|") for p in parts]
 
     return result
@@ -140,7 +140,7 @@ def print_grid(line: str, ncol) -> None:
 
 
 def normalize_cells(cells: list[str], ncol, padding) -> list[str]:
-    # 列数調整
+    # Adjust number of columns
     if len(cells) < ncol:
         cells += [padding] * (ncol - len(cells))
     elif len(cells) > ncol:
@@ -164,7 +164,7 @@ def parse(input_file_path=None):
             state = "GRID"
             print_attr_grid(next_line)
             print_grid(line, grid_ncol)
-            iline += 1  # header + delimiterを消費
+            iline += 1  # consume header + delimiter
         elif is_table_break(line):
             if state != "PLAIN":
                 print_attr_plain()
