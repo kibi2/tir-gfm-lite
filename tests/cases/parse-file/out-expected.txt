@@ -1,10 +1,8 @@
 {"kind": "attr_file", "version": "tir/0.1"}
-{"kind": "attr_plain"}
 {"kind": "plain", "line": "gfm"}
-{"kind": "attr_grid", "columns": [{"align": "left"}, {"align": "left"}, {"align": "left"}]}
 {"kind": "grid", "row": ["Name", "Age", "City"]}
+{"kind": "grid", "row": ["----", "---", "----"]}
 {"kind": "grid", "row": ["Alice", "23", "Tokyo"]}
 {"kind": "grid", "row": ["Bob", "31", "Osaka"]}
 {"kind": "grid", "row": ["Carol", "27", "Nagoya"]}
-{"kind": "attr_plain"}
 {"kind": "plain", "line": "markdown"}

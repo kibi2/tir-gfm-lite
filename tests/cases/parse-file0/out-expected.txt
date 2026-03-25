@@ -1,4 +1,3 @@
 {"kind": "attr_file", "version": "tir/0.1"}
-{"kind": "attr_plain"}
 {"kind": "plain", "line": "gfm"}
 {"kind": "plain", "line": "markdown"}

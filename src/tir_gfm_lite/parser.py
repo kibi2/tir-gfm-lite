@@ -16,126 +16,80 @@ FORMAT_VERSION = "tir/0.1"
 def read_lines(path):
     if path is None or path == "-":
         return sys.stdin.read().splitlines()
-    with open(path, encoding="utf-8") as f:
-        return f.read().splitlines()
+    with open(path, encoding="utf-8") as file:
+        return file.read().splitlines()
+
+
+def print_json(obj):
+    print(json.dumps(obj, ensure_ascii=False))
 
 
 def split_row(line: str) -> list[str]:
+    if is_table_break(line):
+        return []
     # 1. Temporarily escape \|
     placeholder = "\x00"
     line = line.replace(r"\|", placeholder)
-
     # 2. strip (leading/trailing whitespace)
     line = line.strip()
-
     # 3. Remove leading/trailing pipes
     if line.startswith("|"):
         line = line[1:]
     if line.endswith("|"):
         line = line[:-1]
-
     # 4. split
     parts = line.split("|")
-
     # 5. trim + restore
-    result = [p.strip().replace(placeholder, "|") for p in parts]
+    cells = [cell.strip().replace(placeholder, "|") for cell in parts]
+    return cells
 
-    return result
 
-
-def get_delimiter_ncol(line: str, expected_cols: int) -> int:
-    cells = split_row(line)
-    if len(cells) != expected_cols:
+def parse_heaer(header_cells: list[str], next_cells: list[str]) -> int:
+    expected_cols = len(header_cells)
+    if len(next_cells) != expected_cols:
         return 0
-    for cell in cells:
+    for cell in next_cells:
         if not re.match(r"^:?-+:?$", cell):
             return 0
     return expected_cols
 
 
 def get_table_ncol(line: str, next_line: str) -> int:
-    if "|" not in line:
-        return 0
-
     header_cells = split_row(line)
-    if not header_cells:
-        return 0
-
-    return get_delimiter_ncol(next_line, len(header_cells))
+    next_cells = split_row(next_line)
+    return parse_heaer(header_cells, next_cells)
 
 
 def is_table_break(line: str) -> bool:
     return "|" not in line
 
 
-def parse_align(cell: str) -> str:
-    if cell.startswith(":") and cell.endswith(":"):
-        return "center"
-    if cell.endswith(":"):
-        return "right"
-    return "left"
-
-
 def print_attr_file() -> None:
-    print(
-        json.dumps(
-            {
-                "kind": "attr_file",
-                "version": FORMAT_VERSION,
-            },
-            ensure_ascii=False,
-        )
-    )
-
-
-def print_attr_plain() -> None:
-    print(
-        json.dumps(
-            {
-                "kind": "attr_plain",
-            },
-            ensure_ascii=False,
-        )
-    )
-
-
-def print_attr_grid(line: str) -> None:
-    delimiter_cells = split_row(line)
-    columns = [{"align": parse_align(c)} for c in delimiter_cells]
-    print(
-        json.dumps(
-            {
-                "kind": "attr_grid",
-                "columns": columns,
-            },
-            ensure_ascii=False,
-        )
+    print_json(
+        {
+            "kind": "attr_file",
+            "version": FORMAT_VERSION,
+        }
     )
 
 
 def print_plain(line: str) -> None:
-    print(
-        json.dumps(
-            {
-                "kind": "plain",
-                "line": line,
-            },
-            ensure_ascii=False,
-        )
+    print_json(
+        {
+            "kind": "plain",
+            "line": line,
+        },
     )
 
 
 def print_grid(line: str, ncol) -> None:
     cells = split_row(line)
     cells = normalize_cells(cells, ncol, "")
-    print(
-        json.dumps(
-            {
-                "kind": "grid",
-                "row": cells,
-            },
-            ensure_ascii=False,
-        )
+    print_json(
+        {
+            "kind": "grid",
+            "row": cells,
+        },
     )
 
 
@@ -150,34 +104,29 @@ def normalize_cells(cells: list[str], ncol, padding) -> list[str]:
 
 def parse(input_file_path=None):
     lines = read_lines(input_file_path)
-    state = "INIT"
+    state = "PLAIN"
     print_attr_file()
     iline = 0
     nline = len(lines)
-
     while iline < nline:
         line = lines[iline]
-        next_line = lines[iline + 1] if iline + 1 < nline else ""
-        ncol = get_table_ncol(line, next_line)
-        if ncol > 0:
-            grid_ncol = ncol
-            state = "GRID"
-            print_attr_grid(next_line)
-            print_grid(line, grid_ncol)
-            iline += 1  # consume header + delimiter
-        elif is_table_break(line):
-            if state != "PLAIN":
-                print_attr_plain()
-            state = "PLAIN"
-            print_plain(line)
-        elif state == "INIT":
-            state = "PLAIN"
-            print_attr_plain()
-            print_plain(line)
-        elif state == "PLAIN":
-            print_plain(line)
-        elif state == "GRID":
-            print_grid(line, grid_ncol)
+        if state == "PLAIN":
+            next_line = lines[iline + 1] if iline + 1 < nline else ""
+            ncol = get_table_ncol(line, next_line)
+            if ncol > 0:
+                state = "GRID"
+                grid_ncol = ncol
+                print_grid(line, grid_ncol)
+                print_grid(next_line, grid_ncol)
+                iline += 1  # consume header + delimiter
+            else:
+                print_plain(line)
+        else:
+            if is_table_break(line):
+                state = "PLAIN"
+                print_plain(line)
+            else:
+                print_grid(line, grid_ncol)
         iline += 1
 
 
@@ -201,21 +150,8 @@ def write_lines(path: Optional[str], lines: Iterable[str]) -> None:
             f.write(output)
 
 
-def make_delimiter(columns):
-    result = []
-    for col in columns:
-        align = col.get("align", "left")
-
-        if align == "left":
-            result.append("---")
-        elif align == "right":
-            result.append("---:")
-        elif align == "center":
-            result.append(":---:")
-        else:
-            result.append("---")
-
-    return result
+def make_delimiter(ncol):
+    return ["---"] * ncol
 
 
 def escape_cell(cell: str) -> str:
@@ -227,39 +163,55 @@ def format_row(row):
     return "| " + " | ".join(escaped) + " |"
 
 
-def unparse(output_file_path) -> None:
-    import sys
-    import json
-
-    state = "INIT"
-    columns = []
-    out_lines = []
-    for iline, line in enumerate(sys.stdin, 1):
+def read_records():
+    lines = read_lines(None)
+    iline = 0
+    nline = len(lines)
+    records = []
+    while iline < nline:
+        line = lines[iline]
         if not line.strip():
             continue
         try:
             record = json.loads(line)
         except json.JSONDecodeError as exception:
             raise ValueError(f"JSON error at line {iline}: {exception}") from exception
+        records.append(record)
+        iline += 1
+    return records
+
+
+def get_delimiter(row, next_row, irec) -> tuple[str, int]:
+    ncol = parse_heaer(row, next_row)
+    if ncol > 0:
+        irec += 1
+        return format_row(next_row), irec
+    else:
+        ncol = len(row)
+        delimiter = make_delimiter(ncol)
+        return format_row(delimiter), irec
+
+
+def unparse(output_file_path) -> None:
+    records = read_records()
+    prev_kind = "plain"
+    out_lines = []
+    irec = 0
+    nrec = len(records)
+    while irec < nrec:
+        record = records[irec]
         kind = record.get("kind")
         if kind == "plain":
-            state = "PLAIN"
             out_lines.append(record.get("line", ""))
-            columns = []
-        elif kind == "attr_grid":
-            columns = record.get("columns", [])
         elif kind == "grid":
             row = record.get("row", [])
-            if state != "GRID":
-                ncol = max(len(row), len(columns))
-                row = normalize_cells(row, ncol, "")
-                columns = normalize_cells(columns, ncol, {"align": "left"})
-                delimiter = make_delimiter(columns)
-                out_lines.append(format_row(row))
-                out_lines.append(format_row(delimiter))
-            else:
-                out_lines.append(format_row(row))
-            state = "GRID"
+            out_lines.append(format_row(row))
+            if prev_kind != kind:
+                next_row = records[irec + 1].get("row") if irec + 1 < nrec else []
+                delimiter, irec = get_delimiter(row, next_row, irec)
+                out_lines.append(delimiter)
+        prev_kind = kind
+        irec += 1
     write_lines(output_file_path, out_lines)
 
 
