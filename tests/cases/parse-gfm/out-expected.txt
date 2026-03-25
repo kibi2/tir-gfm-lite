@@ -30,7 +30,7 @@ Cells in one column don’t need to match length, though it’s easier to read i
 
 Example 199
 | abc | defghi |
-| :---: | ---: |
+| :-: | -----------: |
 | bar | baz |
  
 <table>
@@ -51,7 +51,7 @@ Include a pipe in a cell’s content by escaping it, including inside other inli
 
 Example 200
 | f\|oo |
-| --- |
+| ------ |
 | b `\|` az |
 | b **\|** im |
  
