@@ -117,3 +117,70 @@
 {"kind": "plain", "line": "---"}
 {"kind": "plain", "line": ""}
 {"kind": "plain", "line": "End of document."}
+{"kind": "plain", "line": ""}
+{"kind": "plain", "line": "* pukiwiki 表 [#k0258d54]"}
+{"kind": "plain", "line": ""}
+{"kind": "plain", "line": "- table"}
+{"kind": "plain", "line": ""}
+{"kind": "plain", "line": "||"}
+{"kind": "grid", "row": ["", ""]}
+{"kind": "plain", "line": ""}
+{"kind": "grid", "row": ["a"]}
+{"kind": "grid", "row": ["bbbb"]}
+{"kind": "plain", "line": ""}
+{"kind": "plain", "line": "- PIPE"}
+{"kind": "plain", "line": ""}
+{"kind": "plain", "line": "|a"}
+{"kind": "grid", "row": ["a"]}
+{"kind": "plain", "line": ""}
+{"kind": "grid", "row": ["a", "a", "c"]}
+{"kind": "plain", "line": ""}
+{"kind": "grid", "row": ["a", "a", "h", "c"]}
+{"kind": "grid", "row": ["a", "a", "3x", "h"]}
+{"kind": "grid", "row": ["a", "a", "3", ""]}
+{"kind": "plain", "line": ""}
+{"kind": "grid", "row": ["1", "2", "3"]}
+{"kind": "plain", "line": ""}
+{"kind": "grid", "row": ["a", "a", "3", "4", "f"]}
+{"kind": "plain", "line": "|a|a|3|4|5|x"}
+{"kind": "plain", "line": "|a|a|3|4|5|ch"}
+{"kind": "plain", "line": "|a|a|3|4|5|cb"}
+{"kind": "plain", "line": ""}
+{"kind": "plain", "line": "- CSV"}
+{"kind": "plain", "line": ""}
+{"kind": "grid", "row": ["a"]}
+{"kind": "plain", "line": ","}
+{"kind": "grid", "row": ["|", "|"]}
+{"kind": "grid", "row": ["a", ""]}
+{"kind": "grid", "row": ["1", "2"]}
+{"kind": "plain", "line": ""}
+{"kind": "grid", "row": ["1", "2", ""]}
+{"kind": "grid", "row": ["1", "2", "3"]}
+{"kind": "plain", "line": ""}
+{"kind": "plain", "line": "- format"}
+{"kind": "plain", "line": ""}
+{"kind": "grid", "row": ["LEFT:", "CENTER:", "RIGHT:", "c"]}
+{"kind": "grid", "row": ["1234", "2345", "3456", ""]}
+{"kind": "grid", "row": ["h1", "h2", "h3", "h"]}
+{"kind": "grid", "row": ["a", "b", "c", ""]}
+{"kind": "grid", "row": ["CENTER:", "RIGHT:", "LEFT:", "c"]}
+{"kind": "grid", "row": ["foot", "foot", "foot", "f"]}
+{"kind": "grid", "row": ["BGCOLOR(red):", "BGCOLOR(green):", "BGCOLOR(blue):", "c"]}
+{"kind": "grid", "row": ["H1", "H2", "H3", "h"]}
+{"kind": "plain", "line": "|a|b|c| "}
+{"kind": "grid", "row": ["F", "F", "F", "f"]}
+{"kind": "plain", "line": ""}
+{"kind": "grid", "row": ["a", "b", "c"]}
+{"kind": "plain", "line": ""}
+{"kind": "plain", "line": "|BGCOLOR(red): |BGCOLOR(green): |BGCOLOR(blue):|c "}
+{"kind": "plain", "line": "|H1|H2|H3|h "}
+{"kind": "plain", "line": ""}
+{"kind": "plain", "line": "- width"}
+{"kind": "grid", "row": ["100", "100", "100", "c"]}
+{"kind": "grid", "row": ["a", "b2", "12345678901234567890", ""]}
+{"kind": "plain", "line": ""}
+{"kind": "plain", "line": "- CSV"}
+{"kind": "plain", "line": ""}
+{"kind": "grid", "row": ["1a", "2 a", "3a"]}
+{"kind": "grid", "row": ["1 ,", "2b", "\"3 b"]}
+{"kind": "grid", "row": ["", "", "c"]}
