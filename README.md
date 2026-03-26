@@ -17,7 +17,4 @@ tir-gfm-lite parse file.md
 This is a simplified (lite) GFM parser.
 
 - Tables end when a line does not contain a pipe (|)
-- Alignment has no default in TIR:
-  - parse: default -> left
-  - unparse: left -> default
 - Not fully compliant with the GFM specification
