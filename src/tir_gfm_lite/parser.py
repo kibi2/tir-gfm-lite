@@ -5,7 +5,6 @@ import sys
 import re
 from typing import Optional, Iterable, Any
 
-__version__ = "0.1.2"
 FORMAT_VERSION = "tir/0.1"
 TABLE_DELIM_RE = re.compile(r"^:?-+:?$")
 
@@ -249,9 +248,16 @@ def unparse(output_file_path: Optional[str] = None) -> None:
 # ------------------------------------------------------------
 
 
+from importlib.metadata import version
+
+
+def get_version():
+    return version("tir-gfm-lite")
+
+
 def usage() -> None:
     print(
-        f"""tir-gfm-lite {__version__}
+        f"""tir-gfm-lite {get_version()}
 
 usage:
   tir-gfm-lite parse    [file|-]
@@ -289,7 +295,7 @@ def run(argv) -> int:
         return 1
 
     if args[0] == "--version":
-        print(__version__)
+        print(get_version())
         return 0
 
     if len(args) not in (1, 2):

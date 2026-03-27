@@ -1,16 +1,19 @@
-[build-system]
-requires = ["setuptools>=61"]
-build-backend = "setuptools.build_meta"
-
 [project]
 name = "tir-gfm-lite"
-version = "0.1.2"
 description = "GFM <-> TIR converter backend for tirenvi"
 readme = "README.md"
 requires-python = ">=3.9"
 license = { text = "MIT" }
 authors = [{ name = "OGAWA Keiji" }]
 dependencies = []
+scripts = { tir-gfm-lite = "tir_gfm_lite.cli:main" }
 
-[project.scripts]
-tir-gfm-lite = "tir_gfm_lite.cli:main"
+dynamic = ["version"]
+
+[build-system]
+requires = ["setuptools>=61", "setuptools_scm"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools_scm]
+version_scheme = "no-guess-dev"
+local_scheme = "no-local-version"

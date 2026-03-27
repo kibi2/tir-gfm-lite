@@ -1,6 +1,5 @@
 #!/bin/sh
-# help
 set -u
-exec > out-actual.txt 2>&1
 
-tir-gfm-lite help
+tir-gfm-lite help > gen.txt 2>&1
+grep -vE '^tir-gfm-lite [0-9]' gen.txt > out-actual.txt || true
