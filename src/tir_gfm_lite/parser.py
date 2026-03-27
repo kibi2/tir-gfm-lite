@@ -5,7 +5,7 @@ import sys
 import re
 from typing import Optional, Iterable, Any
 
-__version__ = "0.1.1"
+__version__ = "0.1.2"
 FORMAT_VERSION = "tir/0.1"
 TABLE_DELIM_RE = re.compile(r"^:?-+:?$")
 
