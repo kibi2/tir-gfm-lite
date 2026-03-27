@@ -1,5 +1,5 @@
 unknown sub command: help
-tir-gfm-lite 0.1.1
+tir-gfm-lite 0.1.2
 
 usage:
   tir-gfm-lite parse    [file|-]
