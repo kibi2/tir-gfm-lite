@@ -1,4 +1,7 @@
 {"kind": "attr_file", "version": "tir/0.1"}
+{"kind": "grid", "row": ["1a", "2 a", " 3a"]}
+{"kind": "grid", "row": ["1\n", "2b", "3\nb\t"]}
+{"kind": "grid", "row": ["\n\n\n", "", "\tc"]}
 {"kind": "plain", "line": "# Project Overview"}
 {"kind": "plain", "line": ""}
 {"kind": "plain", "line": "This document contains multiple tables embedded in normal text."}

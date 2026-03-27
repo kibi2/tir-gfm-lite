@@ -144,8 +144,18 @@ def make_delimiter(ncol: int) -> list[str]:
     return ["---"] * ncol
 
 
-def escape_cell(cell: str) -> str:
+def encode_newline(cell: str) -> str:
+    return cell.replace("\n", r"\n")
+
+
+def escape_gfm(cell: str) -> str:
     return cell.replace("|", r"\|")
+
+
+def escape_cell(cell: str) -> str:
+    cell = encode_newline(cell)
+    cell = escape_gfm(cell)
+    return cell
 
 
 def format_row(row: list[str]) -> str:
