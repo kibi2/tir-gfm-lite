@@ -10,8 +10,10 @@ pip install tir-gfm-lite
 
 ## Usage
 
+```bash
 tir-gfm-lite parse file.md
 tir-gfm-lite unparse file.tir
+```
 
 ## Behavior
 
