@@ -11,8 +11,8 @@ pip install tir-gfm-lite
 ## Usage
 
 ```bash
-tir-gfm-lite parse file.md
-tir-gfm-lite unparse file.tir
+tir-gfm-lite parse file.md > file.tir
+tir-gfm-lite unparse file.md < file.tir
 ```
 
 ## Behavior
