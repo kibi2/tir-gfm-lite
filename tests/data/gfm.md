@@ -1,3 +1,6 @@
+# Copied from GitHub Flavored Markdown Spec (Tables Extension)
+# https://github.github.com/gfm/#tables-extension-
+
 4.10Tables (extension)
 GFM enables the table extension, where an additional leaf block type is available.
 
@@ -30,8 +33,8 @@ Cells in one column don’t need to match length, though it’s easier to read i
 
 Example 199
 | abc | defghi |
-:-: | -----------:
-bar | baz
+| :-: | -----------: |
+| bar | baz |
  
 <table>
 <thead>
@@ -50,7 +53,7 @@ bar | baz
 Include a pipe in a cell’s content by escaping it, including inside other inline spans:
 
 Example 200
-| f\|oo  |
+| f\|oo |
 | ------ |
 | b `\|` az |
 | b **\|** im |
@@ -137,8 +140,8 @@ The remainder of the table’s rows may vary in the number of cells. If there ar
 Example 204
 | abc | def |
 | --- | --- |
-| bar |
-| bar | baz | boo |
+| bar |  |
+| bar | baz |
  
 <table>
 <thead>
@@ -172,3 +175,14 @@ Example 205
 </tr>
 </thead>
 </table>
+
+## simple.md
+gfm
+| Name | Age | City |
+| ---- | --- | ---- |
+| Alice | 23 | Tokyo |
+| Bob | 31 | Osaka\nnipponbashi |
+| Carol | 27 | Nagoya |
+markdown
+
+

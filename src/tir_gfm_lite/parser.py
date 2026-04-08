@@ -44,6 +44,7 @@ def split_row(line: str) -> list[str]:
     for cell in parts:
         cell = cell.strip()
         cell = cell.replace(placeholder, "|")
+        cell = cell.replace(r"\n", "\n")
         cells.append(cell)
     return cells
 
