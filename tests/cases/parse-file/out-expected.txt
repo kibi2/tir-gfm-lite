@@ -3,6 +3,7 @@
 {"kind": "grid", "row": ["Name", "Age", "City"]}
 {"kind": "grid", "row": ["----", "---", "----"]}
 {"kind": "grid", "row": ["Alice", "23", "Tokyo"]}
-{"kind": "grid", "row": ["Bob", "31", "Osaka"]}
+{"kind": "grid", "row": ["Bob", "31", "Osaka\nnipponbashi"]}
 {"kind": "grid", "row": ["Carol", "27", "Nagoya"]}
 {"kind": "plain", "line": "markdown"}
+{"kind": "plain", "line": ""}
