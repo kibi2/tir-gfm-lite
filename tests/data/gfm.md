@@ -184,5 +184,3 @@ gfm
 | Bob | 31 | Osaka<BR>nipponbashi |
 | Carol | 27 | Nagoya |
 markdown
-
-
