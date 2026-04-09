@@ -213,9 +213,17 @@ def unparse(output_file_path: Optional[str] = None) -> None:
         if output_file_path in (None, "-")
         else open(output_file_path, "w", encoding="utf-8")
     )
+    first = True
+    last_line = ""
 
     def emit(line: str):
-        out.write(line + "\n")
+        nonlocal first
+        nonlocal last_line
+        if not first:
+            out.write("\n")
+        out.write(line)
+        first = False
+        last_line = line
 
     lines = read_lines(None)
     records = read_ndjson_records(lines)
@@ -240,6 +248,8 @@ def unparse(output_file_path: Optional[str] = None) -> None:
             raise ValueError(f"unknown kind: {kind}")
         prev_kind = kind
         irec += 1
+    if last_line != "":
+        out.write("\n")
     if out is not sys.stdout:
         out.close()
 
