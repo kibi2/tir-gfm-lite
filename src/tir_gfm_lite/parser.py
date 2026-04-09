@@ -44,7 +44,7 @@ def split_row(line: str) -> list[str]:
     for cell in parts:
         cell = cell.strip()
         cell = cell.replace(placeholder, "|")
-        cell = cell.replace(r"\n", "\n")
+        cell = re.sub(r"<br\s*/?>", "\n", cell, flags=re.IGNORECASE)
         cells.append(cell)
     return cells
 
@@ -145,7 +145,7 @@ def make_delimiter(ncol: int) -> list[str]:
 
 
 def encode_newline(cell: str) -> str:
-    return cell.replace("\n", r"\n")
+    return cell.replace("\n", r"<br>")
 
 
 def escape_gfm(cell: str) -> str:
